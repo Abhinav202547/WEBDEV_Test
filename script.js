@@ -85,13 +85,21 @@
       // Returns true if class exists, false otherwise
       const isActive = item.classList.contains('active');
       
-      // Always close all items first
-      closeAllFAQs();
-      
-      // If the item was NOT active, open it
-      // If it WAS active, keep it closed (accordion behavior)
-      // This means clicking an open item will close it
-      if (!isActive) {
+      // Toggle the item without closing others (non-accordion behavior)
+      // This allows multiple items to be open simultaneously
+      if (isActive) {
+        // If currently open, close it
+        item.classList.remove('active');
+        
+        // Find the button inside this item
+        const button = item.querySelector('.faq-question');
+        
+        // Update aria-expanded to false
+        if (button) {
+          button.setAttribute('aria-expanded', 'false');
+        }
+      } else {
+        // If currently closed, open it
         openFAQ(item);
       }
     }
