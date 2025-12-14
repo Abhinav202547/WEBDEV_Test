@@ -32,49 +32,6 @@
     }
     
     // ========================================
-    // FUNCTION: CLOSE ALL FAQ ITEMS
-    // ========================================
-    
-    // This function closes all FAQ items
-    // Called before opening a new item to ensure only one is open
-    function closeAllFAQs() {
-      // forEach loops through each FAQ item
-      faqItems.forEach(function(item) {
-        // classList.remove() removes a class from element
-        item.classList.remove('active');
-        
-        // Find the button inside this item
-        // querySelector gets FIRST matching element within item
-        const button = item.querySelector('.faq-question');
-        
-        // Update aria-expanded for accessibility
-        // setAttribute() adds/updates an HTML attribute
-        if (button) {
-          button.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-    
-    // ========================================
-    // FUNCTION: OPEN A SPECIFIC FAQ ITEM
-    // ========================================
-    
-    // This function opens a specific FAQ item
-    // Parameter: item - the DOM element to open
-    function openFAQ(item) {
-      // classList.add() adds a class to element
-      item.classList.add('active');
-      
-      // Find the button inside this item
-      const button = item.querySelector('.faq-question');
-      
-      // Update aria-expanded to true for screen readers
-      if (button) {
-        button.setAttribute('aria-expanded', 'true');
-      }
-    }
-    
-    // ========================================
     // FUNCTION: TOGGLE FAQ ITEM
     // ========================================
     
@@ -85,22 +42,29 @@
       // Returns true if class exists, false otherwise
       const isActive = item.classList.contains('active');
       
+      // Find the button inside this item
+      const button = item.querySelector('.faq-question');
+      
       // Toggle the item without closing others (non-accordion behavior)
       // This allows multiple items to be open simultaneously
       if (isActive) {
         // If currently open, close it
+        // classList.remove() removes a class from element
         item.classList.remove('active');
         
-        // Find the button inside this item
-        const button = item.querySelector('.faq-question');
-        
-        // Update aria-expanded to false
+        // Update aria-expanded to false for screen readers
         if (button) {
           button.setAttribute('aria-expanded', 'false');
         }
       } else {
         // If currently closed, open it
-        openFAQ(item);
+        // classList.add() adds a class to element
+        item.classList.add('active');
+        
+        // Update aria-expanded to true for screen readers
+        if (button) {
+          button.setAttribute('aria-expanded', 'true');
+        }
       }
     }
     
