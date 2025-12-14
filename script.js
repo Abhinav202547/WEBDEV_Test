@@ -45,7 +45,7 @@
       // Find the button inside this item
       const button = item.querySelector('.faq-question');
       
-      // Toggle the item without closing others (non-accordion behavior)
+      // Toggle the item without affecting others
       // This allows multiple items to be open simultaneously
       if (isActive) {
         // If currently open, close it
@@ -89,6 +89,7 @@
         const item = question.parentElement;
         
         // Toggle this FAQ item (open if closed, close if open)
+        // Does NOT affect other FAQ items
         toggleFAQ(item);
       });
       
@@ -216,26 +217,6 @@
       question.setAttribute('tabindex', '0');
     });
     
-    // ========================================
-    // OPTIONAL: AUTO-CLOSE ON OUTSIDE CLICK
-    // ========================================
-    
-    // Uncomment this section if you want FAQs to close when clicking outside
-    /*
-    document.addEventListener('click', function(event) {
-      // event.target is the element that was clicked
-      
-      // Check if click was outside all FAQ items
-      // closest() finds nearest ancestor matching selector
-      const clickedFAQ = event.target.closest('.faq-item');
-      
-      if (!clickedFAQ) {
-        // Click was outside - close all FAQs
-        closeAllFAQs();
-      }
-    });
-    */
-    
   }); // End of DOMContentLoaded
   
 })(); // End of IIFE
@@ -258,10 +239,10 @@
    - Prevents use of undeclared variables
    - Makes code more secure and performant
 
-3. Event Delegation:
-   - Attaching events to individual elements (not parent)
-   - More control but more event listeners
-   - Alternative: attach to parent and check event.target
+3. Event Handling:
+   - Each FAQ item is independent
+   - Clicking one does not affect others
+   - Multiple items can be open at the same time
 
 4. Accessibility (a11y):
    - aria-expanded: tells screen readers if content is expanded
