@@ -1,94 +1,201 @@
 <!DOCTYPE html>
+<!-- Declares this as an HTML5 document -->
+
 <html lang="en">
+<!-- Root element with language attribute set to English for accessibility -->
+
 <head>
+  <!-- Meta information and external resources -->
+  
   <meta charset="UTF-8" />
+  <!-- Sets character encoding to UTF-8 to support all characters/symbols -->
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Makes the page responsive by setting viewport width to device width -->
+  <!-- initial-scale=1.0 sets the initial zoom level to 100% -->
+  
   <title>FAQ Section</title>
+  <!-- Browser tab title -->
+  
+  <!-- Google Fonts - Noto Sans (REQUIREMENT) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Establishes early connection to Google Fonts for faster loading -->
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Establishes early connection to font files CDN with CORS support -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Imports Noto Sans font with weights: 400 (regular), 500 (medium), 600 (semi-bold), 700 (bold) -->
+  <!-- display=swap shows fallback font first, then swaps to Noto Sans when loaded -->
+  
   <link rel="stylesheet" href="style.css" />
+  <!-- Links external CSS stylesheet -->
 </head>
+
 <body>
+  <!-- Main content container -->
 
-<section class="faq-section">
-  <div class="faq-container">
+  <section class="faq-section">
+    <!-- Semantic section element for FAQ area -->
+    
+    <div class="faq-container">
+      <!-- Main container that holds left and right columns -->
 
-    <!-- LEFT CONTENT -->
-    <div class="faq-left">
-      <h2>Frequently Asked<br />Questions</h2>
-      <p>
-        Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet,
-        viverra sodales velit senectus et netus. Quisque urna erat,
-        vehicula cursus aliquam nec, venenatis in libero.
-      </p>
-    </div>
+      <!-- LEFT CONTENT SECTION -->
+      <div class="faq-left">
+        <!-- Left column containing heading and description -->
+        
+        <h1 class="faq-title">Frequently Asked Questions</h1>
+        <!-- Main heading - using h1 for proper semantic hierarchy -->
+        
+        <p class="faq-description">
+          Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet, viverra sodales velit senectus et netus. Quisque urna erat, vehicula cursus aliquam nec, venenatis in libero.
+        </p>
+        <!-- Description paragraph explaining the FAQ section -->
+      </div>
 
-    <!-- RIGHT ACCORDION -->
-    <div class="faq-right">
+      <!-- RIGHT ACCORDION SECTION -->
+      <div class="faq-right">
+        <!-- Right column containing all FAQ items -->
 
-      <!-- FAQ ITEM -->
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How easy is it to integrate Onos with our existing systems?</span>
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet,
-            viverra sodales velit senectus et netus.
-          </p>
+        <!-- FAQ ITEM 1 -->
+        <div class="faq-item">
+          <!-- Individual FAQ container -->
+          
+          <button class="faq-question" aria-expanded="false">
+            <!-- Button that triggers accordion open/close -->
+            <!-- Using button for accessibility (keyboard navigation, screen readers) -->
+            <!-- aria-expanded tells screen readers if content is expanded -->
+            
+            <span class="faq-question-text">How easy is it to integrate Onos with our existing systems?</span>
+            <!-- Question text wrapped in span for easier styling -->
+            
+            <span class="faq-icon">
+              <!-- Container for the plus/minus icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG icon - vector graphic that scales perfectly -->
+                <!-- viewBox defines the coordinate system for the SVG -->
+                
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <!-- Horizontal line of the plus/minus icon -->
+                
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <!-- Vertical line (only visible when closed - creates plus) -->
+              </svg>
+            </span>
+          </button>
+          
+          <div class="faq-answer">
+            <!-- Container for answer content (hidden by default) -->
+            
+            <p>
+              Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet, viverra sodales velit senectus et netus.
+            </p>
+            <!-- Answer text -->
+          </div>
         </div>
-      </div>
 
-      <!-- ACTIVE ITEM -->
-      <div class="faq-item active">
-        <button class="faq-question">
-          <span>Can we configure the platform for our Health Plan?</span>
-          <span class="icon">−</span>
-        </button>
-        <div class="faq-answer">
-          <p>
-            Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet,
-            viverra sodales velit senectus et netus. Quisque urna erat,
-            vehicula cursus aliquam nec, venenatis in libero.
-          </p>
+        <!-- FAQ ITEM 2 - ACTIVE BY DEFAULT -->
+        <div class="faq-item active">
+          <!-- Second FAQ item with "active" class to show it open by default -->
+          
+          <button class="faq-question" aria-expanded="true">
+            <!-- Button with aria-expanded="true" since it starts open -->
+            
+            <span class="faq-question-text">Can we configure the platform for our Health Plan?</span>
+            <!-- Question text -->
+            
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <!-- Only horizontal line visible when open (creates minus) -->
+                
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <!-- Vertical line hidden when open -->
+              </svg>
+            </span>
+          </button>
+          
+          <div class="faq-answer">
+            <!-- Answer container (visible because parent has "active" class) -->
+            
+            <p>
+              Vivamus quis consequat orci. Nunc odio nisi, luctus nec justo sit amet, viverra sodales velit senectus et netus. Quisque urna erat, vehicula cursus aliquam nec, venenatis in libero.
+            </p>
+            <!-- Longer answer text -->
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How long does the implementation process usually take?</span>
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer"></div>
-      </div>
+        <!-- FAQ ITEM 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">How long does the implementation process usually take?</span>
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <!-- Empty answer - can be populated later -->
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Is the platform HIPAA compliant?</span>
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer"></div>
-      </div>
+        <!-- FAQ ITEM 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Is the platform HIPAA compliant?</span>
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer"></div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How does the platform improve over time?</span>
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer"></div>
-      </div>
+        <!-- FAQ ITEM 5 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">How does the platform improve over time?</span>
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer"></div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What kind of customer support is available during and after implementation?</span>
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer"></div>
-      </div>
+        <!-- FAQ ITEM 6 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">What kind of customer support is available during and after implementation?</span>
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line class="horizontal-line" x1="6" y1="12" x2="18" y2="12" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+                <line class="vertical-line" x1="12" y1="6" x2="12" y2="18" stroke="#2C4270" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer"></div>
+        </div>
 
+      </div>
+      <!-- End of faq-right -->
+      
     </div>
-  </div>
-</section>
+    <!-- End of faq-container -->
+    
+  </section>
+  <!-- End of faq-section -->
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
+  <!-- Links external JavaScript file for accordion functionality -->
+  <!-- Placed at end of body for better page load performance -->
+  
 </body>
 </html>
