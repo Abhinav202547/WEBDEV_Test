@@ -1,92 +1,370 @@
-/* RESET */
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+/* Universal selector resets default browser spacing */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;           /* Removes default margin from all elements */
+  padding: 0;          /* Removes default padding from all elements */
+  box-sizing: border-box;  /* Makes padding/border included in element's width/height */
 }
 
-/* COLORS & FONTS */
+/* Body base styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans', sans-serif;  /* REQUIREMENT: Noto Sans as primary font */
+  /* sans-serif as fallback if Noto Sans fails to load */
+  line-height: 1.5;    /* Default line spacing for better readability */
+  -webkit-font-smoothing: antialiased;  /* Smoother font rendering on Mac/iOS */
+  -moz-osx-font-smoothing: grayscale;   /* Smoother font rendering on Firefox Mac */
 }
 
-/* FAQ SECTION */
+/* ========================================
+   FAQ SECTION - MAIN CONTAINER
+   ======================================== */
+
 .faq-section {
-  background-color: #cfeedd;
-  padding: 80px 100px;
+  background-color: #B8E6D5;  /* Light mint green background - exact color from design */
+  padding: 80px 100px;        /* Top/bottom: 80px, Left/right: 100px */
+  min-height: 100vh;          /* Minimum height of viewport for full-screen appearance */
 }
 
-/* TWO COLUMN LAYOUT */
+/* ========================================
+   TWO COLUMN LAYOUT (FLEXBOX)
+   ======================================== */
+
 .faq-container {
-  display: flex;
-  gap: 80px;
-  align-items: flex-start;
+  display: flex;              /* Enables flexbox layout */
+  gap: 100px;                 /* Space between left and right columns - matched to design */
+  align-items: flex-start;    /* Aligns items to top of container */
+  max-width: 1400px;          /* Maximum width for very large screens */
+  margin: 0 auto;             /* Centers container horizontally */
 }
 
-/* LEFT SIDE */
+/* ========================================
+   LEFT SIDE - HEADING & DESCRIPTION
+   ======================================== */
+
 .faq-left {
-  max-width: 420px;
+  flex: 0 0 420px;            /* Fixed width of 420px, doesn't grow or shrink */
+  /* flex: grow shrink basis */
 }
 
-.faq-left h2 {
-  font-size: 40px;
-  color: #1f2b6c;
-  margin-bottom: 20px;
+.faq-title {
+  font-size: 48px;            /* Large heading size - matched to design */
+  color: #2C4270;             /* Dark blue color - exact from design */
+  margin-bottom: 24px;        /* Space below heading */
+  font-weight: 700;           /* Bold font weight */
+  line-height: 1.2;           /* Tighter line height for headings */
+  letter-spacing: -0.5px;     /* Slightly tighter letter spacing for better look */
 }
 
-.faq-left p {
-  font-size: 16px;
-  color: #4a4a4a;
-  line-height: 1.6;
+.faq-description {
+  font-size: 16px;            /* Body text size */
+  color: #4A7C6C;             /* Medium green-teal color - matched to design */
+  line-height: 1.7;           /* Comfortable reading line height */
+  font-weight: 400;           /* Normal font weight */
 }
 
-/* RIGHT SIDE */
+/* ========================================
+   RIGHT SIDE - ACCORDION CONTAINER
+   ======================================== */
+
 .faq-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex: 1;                    /* Takes remaining space in flex container */
+  display: flex;              /* Enables flexbox for vertical stacking */
+  flex-direction: column;     /* Stacks FAQ items vertically */
+  gap: 16px;                  /* Space between each FAQ item - matched to design */
+  min-width: 0;               /* Allows flex item to shrink below content size */
 }
 
-/* FAQ ITEM */
+/* ========================================
+   FAQ ITEM - INDIVIDUAL CARD
+   ======================================== */
+
 .faq-item {
-  background-color: #ffffff;
-  border-radius: 14px;
-  padding: 20px 24px;
+  background-color: #FFFFFF;  /* White background for card */
+  border-radius: 16px;        /* Rounded corners (16px) - matched to design */
+  padding: 24px 28px;         /* Top/bottom: 24px, Left/right: 28px */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);  /* Very subtle shadow */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth transition with easing */
+  /* cubic-bezier creates a custom animation curve for smoother feel */
 }
 
-/* QUESTION BUTTON */
+/* Hover effect for FAQ items - adds subtle elevation */
+.faq-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slightly deeper shadow on hover */
+}
+
+/* ========================================
+   QUESTION BUTTON
+   ======================================== */
+
 .faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  color: #1f2b6c;
-  cursor: pointer;
+  width: 100%;                /* Full width of container */
+  background: none;           /* No background color */
+  border: none;               /* Removes default button border */
+  display: flex;              /* Flexbox for horizontal layout */
+  justify-content: space-between;  /* Pushes question and icon to opposite ends */
+  align-items: flex-start;    /* Aligns items to top (important for multi-line questions) */
+  gap: 20px;                  /* Space between text and icon */
+  font-size: 17px;            /* Text size - matched to design */
+  color: #2C4270;             /* Dark blue text color */
+  cursor: pointer;            /* Shows pointer cursor on hover */
+  text-align: left;           /* Left-aligns text */
+  font-family: inherit;       /* Inherits Noto Sans from parent */
+  font-weight: 600;           /* Semi-bold for emphasis - matched to design */
+  padding: 0;                 /* Removes default button padding */
+  line-height: 1.5;           /* Line height for multi-line questions */
 }
 
-/* ICON */
-.icon {
-  font-size: 24px;
-  color: #1f2b6c;
+/* Question text span - allows for better control */
+.faq-question-text {
+  flex: 1;                    /* Takes available space */
+  padding-top: 2px;           /* Slight adjustment for optical alignment */
 }
 
-/* ANSWER */
+/* Removes default focus outline and adds custom one */
+.faq-question:focus {
+  outline: 2px solid #2C4270;  /* Blue outline for keyboard navigation */
+  outline-offset: 4px;         /* Space between element and outline */
+  border-radius: 8px;          /* Rounded outline */
+}
+
+/* Remove focus outline on mouse click (only show for keyboard) */
+.faq-question:focus:not(:focus-visible) {
+  outline: none;              /* Hides outline when clicked with mouse */
+}
+
+/* ========================================
+   ICON (PLUS/MINUS) - SVG
+   ======================================== */
+
+.faq-icon {
+  flex-shrink: 0;             /* Prevents icon from shrinking */
+  width: 24px;                /* Fixed width */
+  height: 24px;               /* Fixed height */
+  display: flex;              /* Centers SVG inside */
+  align-items: center;        /* Vertical center */
+  justify-content: center;    /* Horizontal center */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth rotation */
+}
+
+/* SVG styling */
+.faq-icon svg {
+  width: 100%;                /* Full width of container */
+  height: 100%;               /* Full height of container */
+  display: block;             /* Removes inline spacing */
+}
+
+/* Horizontal line - always visible (creates minus when alone) */
+.horizontal-line {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth transition */
+}
+
+/* Vertical line - hidden when active (creates plus when visible) */
+.vertical-line {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth transition */
+  transform-origin: center;   /* Rotation point at center */
+}
+
+/* Hide vertical line when FAQ is active (shows minus) */
+.faq-item.active .vertical-line {
+  opacity: 0;                 /* Fades out */
+  transform: rotate(90deg);   /* Rotates for smooth animation */
+}
+
+/* ========================================
+   ANSWER CONTAINER
+   ======================================== */
+
 .faq-answer {
-  margin-top: 16px;
-  display: none;
+  max-height: 0;              /* Collapsed by default */
+  overflow: hidden;           /* Hides overflow during animation */
+  opacity: 0;                 /* Invisible by default */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth expand/collapse */
+  /* Transitions max-height, opacity, and margin together */
 }
 
 .faq-answer p {
-  font-size: 14px;
-  color: #4a4a4a;
-  line-height: 1.6;
+  font-size: 15px;            /* Slightly smaller text for answers */
+  color: #5A6C7D;             /* Medium gray-blue color - matched to design */
+  line-height: 1.7;           /* Comfortable reading line height */
+  font-weight: 400;           /* Normal weight */
+  padding-top: 16px;          /* Space above answer text */
 }
 
-/* ACTIVE STATE */
+/* ========================================
+   ACTIVE STATE - SHOWS ANSWER
+   ======================================== */
+
 .faq-item.active .faq-answer {
-  display: block;
+  max-height: 500px;          /* Allows answer to expand - adjust if needed */
+  opacity: 1;                 /* Full opacity */
+  margin-top: 4px;            /* Small space between question and answer */
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLET
+   ======================================== */
+
+/* TABLET BREAKPOINT (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  
+  /* Reduce section padding */
+  .faq-section {
+    padding: 60px 50px;       /* Reduced padding for tablets */
+  }
+  
+  /* Reduce gap between columns */
+  .faq-container {
+    gap: 60px;                /* Reduced gap */
+  }
+  
+  /* Adjust left column width */
+  .faq-left {
+    flex: 0 0 360px;          /* Slightly smaller fixed width */
+  }
+  
+  /* Reduce heading size */
+  .faq-title {
+    font-size: 42px;          /* Slightly smaller heading */
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE
+   ======================================== */
+
+/* MOBILE BREAKPOINT (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  
+  /* Further reduce section padding */
+  .faq-section {
+    padding: 48px 24px;       /* Mobile padding */
+  }
+  
+  /* Stack columns vertically */
+  .faq-container {
+    flex-direction: column;   /* Vertical layout */
+    gap: 40px;                /* Gap between stacked sections */
+  }
+  
+  /* Left section takes full width */
+  .faq-left {
+    flex: 1 1 auto;           /* Flexible width */
+    width: 100%;              /* Full width */
+    max-width: 100%;          /* Override max-width */
+  }
+  
+  /* Adjust heading size for mobile */
+  .faq-title {
+    font-size: 36px;          /* Smaller heading for mobile */
+    margin-bottom: 20px;      /* Slightly less space */
+  }
+  
+  /* Adjust description text */
+  .faq-description {
+    font-size: 15px;          /* Slightly smaller text */
+  }
+  
+  /* Adjust FAQ item padding */
+  .faq-item {
+    padding: 20px 24px;       /* Reduced padding */
+  }
+  
+  /* Adjust question text size */
+  .faq-question {
+    font-size: 16px;          /* Smaller question text */
+    gap: 16px;                /* Less gap */
+  }
+  
+  /* Adjust answer text size */
+  .faq-answer p {
+    font-size: 14px;          /* Smaller answer text */
+    padding-top: 12px;        /* Less padding */
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - SMALL MOBILE
+   ======================================== */
+
+/* SMALL MOBILE BREAKPOINT (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  
+  /* Minimal section padding */
+  .faq-section {
+    padding: 36px 20px;       /* Minimal padding for small screens */
+  }
+  
+  /* Reduce gap */
+  .faq-container {
+    gap: 32px;                /* Smaller gap */
+  }
+  
+  /* Further reduce heading size */
+  .faq-title {
+    font-size: 32px;          /* Even smaller heading */
+    margin-bottom: 16px;      /* Less space */
+  }
+  
+  /* Adjust description */
+  .faq-description {
+    font-size: 14px;          /* Smaller text */
+  }
+  
+  /* Minimal FAQ item padding */
+  .faq-item {
+    padding: 18px 20px;       /* Minimal padding */
+    border-radius: 14px;      /* Slightly smaller border radius */
+  }
+  
+  /* Adjust question text */
+  .faq-question {
+    font-size: 15px;          /* Smaller text */
+    gap: 12px;                /* Minimal gap */
+  }
+  
+  /* Adjust answer text */
+  .faq-answer p {
+    font-size: 14px;          /* Smaller text */
+    padding-top: 10px;        /* Less padding */
+  }
+  
+  /* Slightly smaller icon */
+  .faq-icon {
+    width: 20px;              /* Smaller icon */
+    height: 20px;             /* Smaller icon */
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & PREFERENCES
+   ======================================== */
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respects user's motion preferences */
+/* If user has "reduce motion" enabled, animations are minimal */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;  /* Nearly instant animations */
+    animation-iteration-count: 1 !important;  /* Animations run only once */
+    transition-duration: 0.01ms !important;  /* Nearly instant transitions */
+    scroll-behavior: auto !important;  /* Disables smooth scrolling */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .faq-item {
+    border: 1px solid #2C4270;  /* Adds border for high contrast */
+  }
+  
+  .faq-question:focus {
+    outline-width: 3px;       /* Thicker outline */
+  }
 }
